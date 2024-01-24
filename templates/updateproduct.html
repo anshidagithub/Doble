@@ -1,0 +1,183 @@
+
+
+{% extends 'adminbase.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Corona Admin</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="{% static 'assets/vendors/mdi/css/materialdesignicons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/vendors/css/vendor.bundle.base.css' %}">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="{% static 'assets/vendors/jvectormap/jquery-jvectormap.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/vendors/flag-icon-css/css/flag-icon.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/vendors/owl-carousel-2/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/vendors/owl-carousel-2/owl.theme.default.min.css' %}">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="{% static 'assets/images/favicon.png' %}" />
+</head>
+
+<body>
+
+    <!--================Login Box Area =================-->
+    <section class="login_box_area section_gap">
+        <div class="container">
+            <div class="row">
+
+                
+            <div class="col-md-6 ">
+                <div class="login_form_inner">
+                    <h3>update product here</h3>
+                    {% if messages %}
+                    <div id="messages" class="messages">
+                        {% for message in messages %}
+                        <div {% if message.tags %}
+                            class="alert alert-{{ message.tags }} alert-dismissible fade show text-center" {% endif %}
+                            role="alert">
+                            {% if message.level == DEFAdivT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+                            {{ message }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+
+
+
+
+                        <form class="row login_form" action="" method="post"
+                            id="contactForm" novalidate="novalidate" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="col-md-12 form-group">
+                                <input type="text" class="form-control" id="productname" name="product_name" value="{{updateproduct.product_name}}"
+                                    placeholder="productname" onfocus="this.placeholder = ''"
+                                    onblur="this.placeholder = 'product_name'">
+
+                            </div>
+
+                            <div class="col-md-12 form-group">
+                                <input type="text" class="form-control" id="description" name="description" value="{{updateproduct.description}}"
+                                    placeholder="description" onfocus="this.placeholder = ''"
+                                    onblur="this.placeholder = 'description'">
+
+                            </div>
+
+                            <div class="col-md-12 form-group">
+                                <label for="available">image1</label>
+                                <input type="file" class="form-control" id="image1" name="image1" accept="image/*"  value="{{updateproduct.image1}}"
+                                    placeholder="image1" onfocus="this.placeholder = ''"
+                                    onblur="this.placeholder = 'image1'">
+
+                            </div>
+
+                            <div class="col-md-12 form-group">
+                                <input type="text" class="form-control" id="price" name="price"  value="{{updateproduct.price}}"
+                                    placeholder="price" onfocus="this.placeholder = ''"
+                                    onblur="this.placeholder = 'price'">
+
+                            </div>
+
+                            <div class="col-md-12 form-group">
+                                <input type="text" class="form-control" id="stock" name="stock" value="{{updateproduct.stock}}"
+                                    placeholder="stock" onfocus="this.placeholder = ''"
+                                    onblur="this.placeholder = 'stock'">
+
+                            </div>
+
+                            <div class="col-md-12 form-group">
+                                <label for="available"> Available?</label>
+                                <input type="checkbox" class="form-control" id="available" name="available" value="1" value="{{updateproduct.is_available}}"
+                                    placeholder="available" onfocus="this.placeholder = ''"
+                                    onblur="this.placeholder = 'available'" style="height: 16px; width: 16px;">
+
+                            </div>
+
+                            <div class="col-md-12 form-group">
+                                    <select class="form-control" id="subcategory" name="subcategory"  value="{{updateproduct.sub_category.subcategory_name}}"> 
+                                    <option value="" selected disabled>Select subcategory</option>
+                                    {% for subcategory in subcategories %}
+                                    <option value="{{ subcategory.id }}">{{ subcategory.subcategory_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+
+                            <div class="col-md-12 form-group">
+                                    <select class="form-control" id="category" name="category"  value="{{updateproduct.category.category_name}}">
+                                    <option value="" selected disabled>Select a category</option>
+                                    {% for category in categories %}
+                                    <option value="{{ category.id }}">{{ category.category_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                                <div class="col-md-12 form-group ">
+                                    <button type="submit" value="update_product"
+                                        class="primary-btn mb-3">submit</button>
+
+                                </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+    <!-- partial -->
+    </div>
+    <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="{% static 'assets/vendors/js/vendor.bundle.base.js' %}"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="{% static 'assets/vendors/chart.js/Chart.min.js' %}"></script>
+    <script src="{% static 'assets/vendors/progressbar.js/progressbar.min.js' %}"></script>
+    <script src="{% static 'assets/vendors/jvectormap/jquery-jvectormap.min.js' %}"></script>
+    <script src="{% static 'assets/vendors/jvectormap/jquery-jvectormap-world-mill-en.js' %}"></script>
+    <script src="{% static 'assets/vendors/owl-carousel-2/owl.carousel.min.js' %}"></script>
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="{% static 'assets/js/off-canvas.js' %}"></script>
+    <script src="{% static 'assets/js/hoverable-collapse.js' %}"></script>
+    <script src="{% static 'assets/js/misc.js' %}"></script>
+    <script src="{% static 'assets/js/settings.js' %}"></script>
+    <script src="{% static 'assets/js/todolist.js' %}"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+    <script src="{% static 'assets/js/dashboard.js' %}"></script>
+    <!-- End custom js for this page -->
+</body>
+
+</html>
+
+
+
+{% endblock content %}

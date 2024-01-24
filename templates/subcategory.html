@@ -1,0 +1,135 @@
+
+
+{% extends 'adminbase.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Doble Admin</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="{% static 'assets/vendors/mdi/css/materialdesignicons.min.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/vendors/css/vendor.bundle.base.css' %}">
+  <!-- endinject -->
+  <!-- Plugin css for this page -->
+  <link rel="stylesheet" href="{% static 'assets/vendors/jvectormap/jquery-jvectormap.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/vendors/flag-icon-css/css/flag-icon.min.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/vendors/owl-carousel-2/owl.carousel.min.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/vendors/owl-carousel-2/owl.theme.default.min.css' %}">
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <!-- endinject -->
+  <!-- Layout styles -->
+  <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+  <!-- End layout styles -->
+  <link rel="shortcut icon" href="{% static 'assets/images/favicon.png' %}" />
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+</head>
+
+<body>
+
+  <div class="row ">
+    <div class="col-12 grid-margin">
+      <div class="card">
+        <div class="card-body bg-dark">
+          <div class="text-center  pb-2"><a href="{% url 'adminpanel:add_subcategory' %}" class="btn btn-primary btn-md">+</a>
+          </div>
+        </div>
+
+        <div class="table-responsive bg-dark">
+          <table class="table">
+            <thead>
+              <tr>
+
+                <th> id </th>
+                <th> subcategoryname</th>
+                <th> category </th>
+                <th> createdat </th>
+                <th> updatedat </th>
+                <th> Action</th>
+               
+              </tr>
+            </thead>
+            <tbody>
+              {% for i in subcategory %}
+              <tr>
+                <td>{{i.id}}</td>
+                <td>{{i.subcategory_name}}</td>
+                <td>{{i.category.category_name}}</td>
+                <td>{{i.created_at}}</td>
+                <td>{{i.updated_at}}</td>
+                <td><a href="{% url 'adminpanel:delete_subcategory' subcategory_id=i.id %}" class="btn btn-danger btn-sm">Delete</a>
+                <a href="{% url 'adminpanel:update_subcategory'  subcategory_id=i.id %}" class="btn btn-warning btn-sm">update</a></td>
+              </tr>
+             {% endfor %}      
+        </tbody>
+        </table>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <!-- partial -->
+    </div>
+    <!-- main-panel ends -->
+  </div>
+  <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+  <!-- plugins:js -->
+  <script src="{% static 'assets/vendors/js/vendor.bundle.base.js' %}"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page -->
+  <script src="{% static 'assets/vendors/chart.js/Chart.min.js' %}"></script>
+  <script src="{% static 'assets/vendors/progressbar.js/progressbar.min.js' %}"></script>
+  <script src="{% static 'assets/vendors/jvectormap/jquery-jvectormap.min.js' %}"></script>
+  <script src="{% static 'assets/vendors/jvectormap/jquery-jvectormap-world-mill-en.js' %}"></script>
+  <script src="{% static 'assets/vendors/owl-carousel-2/owl.carousel.min.js' %}"></script>
+  <!-- End plugin js for this page -->
+  <!-- inject:js -->
+  <script src="{% static 'assets/js/off-canvas.js' %}"></script>
+  <script src="{% static 'assets/js/hoverable-collapse.js' %}"></script>
+  <script src="{% static 'assets/js/misc.js' %}"></script>
+  <script src="{% static 'assets/js/settings.js' %}"></script>
+  <script src="{% static 'assets/js/todolist.js' %}"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page -->
+  <script src="{% static 'assets/js/dashboard.js' %}"></script>
+  <!-- End custom js for this page -->
+</body>
+
+</html>
+
+
+
+
+{% endblock content %}

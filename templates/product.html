@@ -54,7 +54,9 @@
                 <th> id </th>
                 <th> productname</th>
                 <th> description</th>
-                <th> image </th>
+                <th> image1 </th>
+                <th> image2 </th>
+                <th> image3 </th>
                 <th> price </th>
                 <th> stock</th>
                 <th> available</th>
@@ -76,6 +78,16 @@
                   <td><img src="{{ i.image1.url }}" alt="" style="height: 100px; width: 100px;"></td>
                 {% else %}
                   <td>No Image</td>
+                {% endif %}
+                {% if i.image2 %}
+                <td><img src="{{ i.image2.url }}" alt="" style="height: 100px; width: 100px;"></td>
+                {% else %}
+                <td>No Image</td>
+                {% endif %}
+                {% if i.image3 %}
+                <td><img src="{{ i.image3.url }}" alt="" style="height: 100px; width: 100px;"></td>
+                {% else %}
+                <td>No Image</td>
                 {% endif %}
                 <td>{{i.price}}</td>
                 <td>{{i.stock}}</td>

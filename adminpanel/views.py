@@ -194,6 +194,8 @@ def addproduct(request):
         price= request.POST['price']
         stock= request.POST['stock']
         image1 = request.FILES.get('image1') 
+        image2= request.FILES.get('image2')
+        image3= request.FILES.get('image3')
         available= request.POST['available']
         subcategoryy= request.POST['subcategory']
         categoryy = request.POST['category']
@@ -201,7 +203,7 @@ def addproduct(request):
             messages.error(request,'product already exist!!')
             return redirect('adminpanel:productlist')
         else:
-            productt= product.objects.create( product_name=product_name,description=description,price=price,stock=stock,image1=image1,is_available=available,sub_category_id=subcategoryy,category_id=categoryy)
+            productt= product.objects.create( product_name=product_name,description=description,price=price,stock=stock,image1=image1,image2=image2,image3=image3,is_available=available,sub_category_id=subcategoryy,category_id=categoryy)
             productt.save()
             return redirect('adminpanel:productlist')
      
@@ -231,7 +233,9 @@ def update_product(request,product_id):
         description= request.POST['description']
         price= request.POST['price']
         stock= request.POST['stock']
-        image1 = request.FILES.get('image1') 
+        image1 = request.FILES.get('image1')
+        image2= request.FILES.get('image2')
+        image3= request.FILES.get('image3') 
         available= request.POST['available']
         subcategoryy= request.POST['subcategory']
         categoryy = request.POST['category']
@@ -246,6 +250,8 @@ def update_product(request,product_id):
                 product_instance.price= price
                 product_instance.stock= stock
                 product_instance.image1= image1
+                product_instance.image2= image2
+                product_instance.image3= image3
                 product_instance.is_available=available
                 product_instance.sub_category_id=subcategoryy
                 product_instance.category_id = categoryy

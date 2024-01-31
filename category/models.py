@@ -1,4 +1,5 @@
 from django.db import models
+from account.models import CustomUser
 
 # Create your models here.
 
@@ -42,4 +43,24 @@ class product(models.Model):
     def __str__(self):
         return self.product_name
     
+
+class cart(models.Model):
+    cart_id= models.CharField(max_length=250,blank=True)
+    date_added= models.DateField(auto_now=True)
+
+    def __str__(self):
+        return self.cart_id
+    
+class cartitem(models.Model):
+    user = models.ForeignKey(CustomUser,on_delete=models.CASCADE,null=True)
+    product= models.ForeignKey(product,on_delete=models.CASCADE)
+    cart= models.ForeignKey(cart,on_delete=models.CASCADE,null=True)
+    quantity= models.IntegerField()
+    is_active= models.BooleanField(default=True)
+
+    def sub_totel(self):
+        return self.product.price*self.quantity
+
+    def __str__(self):
+        return self.product
         

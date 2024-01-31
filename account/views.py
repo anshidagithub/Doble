@@ -2,6 +2,8 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.models import User,auth
 from django.contrib.auth import authenticate,login,logout
 from .models import CustomUser
+from category.views import _cart_id
+from category.models import cart,cartitem
 
 
 from django.contrib import messages
@@ -22,6 +24,20 @@ def loginn(request):
         user = authenticate(email=email, password=password)
         if user is not None:
             if user.is_superuser:
+                try:
+                    
+                    cartt = cart.objects.get(cart_id=_cart_id(request))
+                    is_cart_item_exists = cartitem.objects.filter(cart=cart).exists()
+                    if is_cart_item_exists:
+                        print(is_cart_item_exists)
+                        cart_item = cartitem.objects.filter(cart=cartt)
+
+                        for item in cart_item:
+                            item.user= user
+                            item.save()
+                except:
+                    pass
+                  
                 login(request, user)
                 return redirect('adminpanel:dashbord')
             else:

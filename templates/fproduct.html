@@ -1,0 +1,145 @@
+
+{% extends 'base1.html' %}
+
+{% load static %}
+
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<!--================Single Product Area =================-->
+
+<section class="login_box_area section_gap">
+    <div class="container">
+      <div class="row s_product_inner">
+        <div class="col-lg-6">
+          <div class="s_Product_carousel">
+            <div class="single-prd-item  zoom-image-hover">
+              <img
+                class="img-fluid"
+                src="{{ singleproduct.image1.url }}"
+                alt=""
+              />
+            </div>
+            <div class="single-prd-item  zoom-image-hover">
+              <img
+                class="img-fluid"
+                src="{{ singleproduct.image2.url }}"
+                alt=""
+              />
+            </div>
+            <div class="single-prd-item  zoom-image-hover">
+              <img
+                class="img-fluid"
+                src="{{ singleproduct.image3.url }}"
+                alt=""
+              />
+            </div>
+          </div>
+          
+        </div>
+        <div class="col-lg-5 offset-lg-1">
+          <div class="s_product_text">
+            <form action="#" method="POST">
+              {% csrf_token %}
+              <h3>{{singleproduct.product_name }}</h3>
+              <h2>₹{{singleproduct.price}}</h2>
+              <ul class="list">
+                <li>
+                  <a class="active" href="#"
+                    ><span>{{singleproduct.category}}</span>
+                    :{{singleproduct.sub_category}}
+                  </a>
+                </li>
+                {% if singleproduct.stock <= 0 %}
+                <li>
+                  <a href="#"><span>Availibility</span> : Out of Stock</a>
+                </li>
+                {% else %}
+                <li>
+                  <a href="#"><span>Availibility</span> :In Stock</a>
+                </li>
+                {% endif %}
+              </ul>
+              <p>{{singleproduct.description}}.</p>
+              <div
+                class="item-option-select"
+                style="height: 87px; margin-top: -27px"
+              >
+                <h6>choose shade</h6>
+                <select name="color" class="form-control" required>
+                  <option value="" disabled selected>select</option>
+                  {% for i in single_product.variation_set.colors %}
+                  <option value="{{i.variation_value | lower }}">
+                    {{i.variation_value | capfirst }}
+                  </option>
+                  {% endfor %}
+                </select>
+              </div>
+              <br>
+            <h6>Free Shipping On Orders over ₹ 75</h6>
+  
+              <div class="card_area d-flex align-items-center  ">
+                {% if singleproduct.stock <= 0 %}
+                <h5 class="text-danger mt-5"  style="margin-left:-92px">Out of Stock</h5>
+                {% else %}
+                {% if in_cart %}
+                <button
+                type="submit"
+                class="primary-btn mx-0"
+                style="margin-top: 35px; margin-left: -87px"
+                >
+              <a href="#">
+                Added to Cart
+              </button>
+             </a>
+
+             <button
+                type="submit"
+                class="primary-btn mx-0"
+                style="margin-top: 35px; margin-left: -87px"
+                >
+              <a href="{% url 'cartpage' %}">
+                view Cart
+              </button>
+             </a>
+                {% else %}
+                <button
+                  type="submit"
+                  class="primary-btn mx-0"
+                  style="margin-top: 35px; margin-left: -87px"
+                  >
+                <a href="{% url 'add_cart' product_id=singleproduct.id %}">
+                  Add to Cart
+                </button>
+               </a>
+               {% endif %}
+                {% endif %} {% comment %}
+                <a
+                  class="icon_btn mt-4"
+                  style="margin: -12px; margin-left: 3px"
+                  href="#"
+                  ><i class="lnr lnr lnr-heart"></i
+                ></a>
+                {% endcomment %}
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--================End Single Product Area =================-->
+  
+</body>
+</html>
+
+{% endblock content %} 

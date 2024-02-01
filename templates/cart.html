@@ -70,7 +70,7 @@
                                              {% endcomment %}
                                              <button 
                                              class="increase items-count"  type="submit"><i class="lnr lnr-chevron-up"></i></button>
-                                              <a href="{% url 'remove_cart' cart_item.product.id %}"><button 
+                                              <a href="{% url 'remove_cart' cart_item.product.id cart_item.id %}"><button 
                                              class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button></a>
                                              </form>
                                              
@@ -81,7 +81,7 @@
                                     <h5>₹{{ cart_item.sub_totel }}</h5>
                                 </td>
                                 <td>
-                                    <a href="{% url 'remove_cart_item' cart_item.product.id  %}" onclick="" id="remove-button" class="btn btn-danger" >Remove</a>
+                                    <a href="{% url 'remove_cart_item' cart_item.product.id cart_item.id  %}" onclick="" id="remove-button" class="btn btn-danger" >Remove</a>
                                 </td>
                             </tr>
                             {% endfor %}

@@ -78,114 +78,69 @@
 
 
 
-    <form
-      class="row contact_form"
-      action="#"
-      method="post">
-      {% csrf_token %}
 
       <div class="billing_details container">
         <div class="row">
           <div class="col-12 col-md-12 col-lg-12">
             <h3>Billing Details</h3>
 
-            <p class="">
-              <a
-                class="btn btn-primary m-3 "
-                data-toggle="collapse"
-                href="#collapseExample"
-                role="button"
-                aria-expanded="false"
-                aria-controls="collapseExample" required>Choose Address
-              </a>
-
-              
-           
-              <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addressmodal">
-                 Add Address
-              </button>
-               
-             
-
-
-             
-            </p>
-
-            <div class="modal fade" id="addressmodal" tabindex="-1" role="dialog"
-            aria-labelledby="" aria-hidden="true">
-            <!-- ... (your existing modal content) ... -->
-
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title text-danger" id="exampleModalLabel">Add new address</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <form action="" method="POST">
-                    {% csrf_token %}
-                    <div class="form-row">
-                      <div class="col form-group">
-                        <label for="">first_name</label>
-                        <input type="text" name="first_name" class="form-control" required>
-                      </div>
-                      <div class="col form-group">
-                        <label for="">last_name</label>
-                        <input type="text" name="last_name" class="form-control" required>
-                      </div>
-                    </div>
-                    <div class="form-row">
-                      <div class="col form-group">
-                        <label for="">email</label>
-                        <input type="email" name="email" class="form-control" required>
-                      </div>
-                      <div class="col form-group">
-                        <label for="">phone</label>
-                        <input type="text" name="phone" class="form-control" required>
-                      </div>
-                    </div>
-                    <div class="form-row">
-                      <div class="col form-group">
-                        <label for="">address1</label>
-                        <input type="text" name="address1" class="form-control" required>
-                      </div>
-                      <div class="col form-group">
-                        <label for="">address2</label>
-                        <input type="text" name="address2" class="form-control" >
-                      </div>
-                    </div>
-                    
-                    <div class="form-row">
-                      <div class="col form-group">
-                        <label for="">city</label>
-                        <input type="text" name="city" class="form-control" required>
-                      </div>
-                      <div class="col form-group">
-                        <label for="">state</label>
-                        <input type="text" name="state" class="form-control" required>
-                      </div>
-                      <div class="col form-group">
-                        <label for="">country</label>
-                        <input type="text" name="country" class="form-control" required>
-                      </div>
-                    </div>
-                 
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">cancel</button>
-                  <button type="button" class="btn btn-success" data-dismiss="modal">save</button>
-                </div>
+            <form
+            class="row contact_form"
+            action="{% url 'place_order' %}"
+            method="post">
+            {% csrf_token %}
+            <div class="form-row">
+              <div class="col form-group">
+                <label for="">first_name</label>
+                <input type="text" name="first_name" class="form-control" required>
+              </div>
+              <div class="col form-group">
+                <label for="">last_name</label>
+                <input type="text" name="last_name" class="form-control" required>
               </div>
             </div>
-          </div>
-           
-
-
-          </div>
+            <div class="form-row">
+              <div class="col form-group">
+                <label for="">email</label>
+                <input type="email" name="email" class="form-control" required>
+              </div>
+              <div class="col form-group">
+                <label for="">phone</label>
+                <input type="text" name="phone" class="form-control" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col form-group">
+                <label for="">address1</label>
+                <input type="text" name="address1" class="form-control" required>
+              </div>
+              <div class="col form-group">
+                <label for="">address2</label>
+                <input type="text" name="address2" class="form-control" >
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="col form-group">
+                <label for="">city</label>
+                <input type="text" name="city" class="form-control" required>
+              </div>
+              <div class="col form-group">
+                <label for="">state</label>
+                <input type="text" name="state" class="form-control" required>
+              </div>
+              <div class="col form-group">
+                <label for="">country</label>
+                <input type="text" name="country" class="form-control" required>
+              </div>
+            </div>
+         
         </div>
-      </div>
+             
+
+
+             
+            
       <div class="container">
         <div class="row">
           <div class="col-12 col-md-12 col-lg-12">
@@ -213,31 +168,23 @@
                 <li>
                   <a href="#">tax <span>₹{{tax}}</span></a>
                 </li>
-                <li>
-                  <div class="checkout__order__total" id="coupon_block" style="display: none;">Discount <span>- ₹<b id="coupon_discount"></b></span>
-                  <h1 class="text-danger" style="font-size: 12px;">*Coupon Applied - <b id="coupon_code"></b></h1></div>
-                </li>
+                
                 <li>
                   <a href="#">Grand total <span id='grand_total'>₹{{grand_total}}</span></a>
                   <input type="text" name="coupon" id="coupon_code1" style="display: none;">
                 </li>
               </ul>
-              {% if  not address %}
+             
               <button
                 type="submit"
-                class="btn btn-danger btn-lg btn-block mb-2" disabled>
-                Add a address in above feild
-              </button>
-              {% else %}
-              <button
-                type="submit"
+               
                 class="btn btn-warning btn-lg btn-block mb-2">
                 Place order
               </button>
-              {% endif %}
+              
             </div>
           </div>
-        </form>
+       
         </div>
       </div>
     </form>
@@ -246,83 +193,6 @@
 
 
 
-<!-- Modal -->
-<div class="modal fade" id="a{{i.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add New Address</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-      <div class="card-body">
-        <div class="row"> 
-        <div class="col-md-12">
-                 <form action="#" method="POST" enctype="multipart/form-data">
-                  {% csrf_token %}
-                  <div class="form-row">
-                      <div class="form-group col-md-6">
-                          <label >First Name</label>
-                         {{form.first_name}}
-                      </div>
-                      <div class="form-group col-md-6">
-                          <label >Last Name</label>
-                          {{form.last_name}}
-                      </div>
-  
-                  </div>
-                  <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label >Email</label>
-                          <input type="email" name="email" maxlength="50" class="form-control" onkeyup="validateAddAddressEmail()" id="id_email">
-                         	<span id="email-error"class='change'></span>
-                        {% comment %} {{form.email}} {% endcomment %}
-                    </div>
-                    <div class="form-group col-md-6">
-                          <label >Phone Number</label>
-                          <input type="text" name="phone" maxlength="15" class="form-control" onkeyup="validateAddAddressMobilenumber()" id="id_phone">
-                           <span id="mobilenumber-error"class='change'></span>
-                          {% comment %} {{form.phone}} {% endcomment %}
-                    </div>
-                    <div class="form-group col-md-6">
-                      <label >Address Line 1</label>
-                      {{form.address_line1}}
-                    </div>
-                    <div class="form-group col-md-6">
-                      <label >Address Line 2</label>
-                      {{form.address_line2}}
-                    </div>
-                    <div class="form-group col-md-6">
-                      <label >City</label>
-                      {{form.city}}
-                    </div>
-                    <div class="form-group col-md-6">
-                      <label >Country</label>
-                      {{form.country}}
-                    </div>
-                    <div class="form-group col-md-6">
-                      <label >State</label>
-                      {{form.state}}
-                    </div>
-                         
-                  </div>
-        
-        </div>
-        </div> <!-- row.// -->
-      </div> <!-- card-body .// -->
-      </div>
-      <div class="modal-footer" style="display:flex;justify-content:start">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <a href=""><button type="submit" onclick="return validateAddAddresForm()"  class="btn btn-primary">Save</button></a>
-         </form><span id="submit-error" class="mt-2"></span>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- End Modal -->
-
   
 </section>
 
@@ -330,50 +200,6 @@
 
 
 
-<!-- coupon -->
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-<script>
-    $('#coupon_form').on('submit', function(e){
-             
-        e.preventDefault();
-        
-          $.ajax({
-               type : "POST", 
-               url: "#",
-               data: {
-                   coupon : $('#coupon_data').val(),
-                   grand_total : '{{grand_total}}',
-                csrfmiddlewaretoken: '{{ csrf_token }}',
-                dataType: "json",
-        
-               },
-               
-               success: function(data){
-                  $('#output').html(data.msg) /* response message */
-                  $('#grand_total').text('₹'+data.grand_total)
-                  if (data.coupon_discount > 0) {
-                      $('#coupon_block').show()
-                      $('#accordionExample').hide()
-                  }
-                  $('#coupon_discount').html(data.coupon_discount)
-                  $('#coupon_code').html(data.coupon_code)
-                  $('#coupon_code1').val(data.coupon_code)
-
-                  
-               },
-        
-               failure: function() {
-                   
-               }
-        
-        
-           });
-        
-        
-                });  
-</script>
 
 
 

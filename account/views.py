@@ -27,7 +27,7 @@ def loginn(request):
                 try:
                     
                     cartt = cart.objects.get(cart_id=_cart_id(request))
-                    is_cart_item_exists = cartitem.objects.filter(cart=cart).exists()
+                    is_cart_item_exists = cartitem.objects.filter(cart=cartt).exists()
                     if is_cart_item_exists:
                         print(is_cart_item_exists)
                         cart_item = cartitem.objects.filter(cart=cartt)

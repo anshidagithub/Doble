@@ -26,5 +26,6 @@ urlpatterns = [
     path('adminpanel/', include('adminpanel.urls',  namespace='adminpanel')),
     path('account/', include('account.urls')),
     path('category/',include('category.urls')),
+    path('orders/',include('orders.urls')),
 
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'adminpanel',
     'account',
     'category',
+    'orders',
 ]
 
 MIDDLEWARE = [

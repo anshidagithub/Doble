@@ -49,6 +49,7 @@ class Order(models.Model):
     return_reason = models.CharField(max_length=50, blank=True)
     created_at = models.DateField(auto_now_add=True)
     updated_at = models.DateField(auto_now=True)
+   
     
     def full_name(self):
         return f'{self.first_name} {self.last_name}'

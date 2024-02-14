@@ -70,21 +70,8 @@
                 {% endif %}
               </ul>
               <p>{{singleproduct.description}}.</p>
-              <div
-                class="item-option-select"
-                style="height: 87px; margin-top: -27px"
-              >
-                <h6>choose shade</h6>
-                <select name="color" class="form-control" required>
-                  <option value="" disabled selected>select</option>
-                  {% for i in single_product.variation_set.colors %}
-                  <option value="{{i.variation_value | lower }}">
-                    {{i.variation_value | capfirst }}
-                  </option>
-                  {% endfor %}
-                </select>
-              </div>
-              <br>
+             
+             
             <h6>Free Shipping On Orders over ₹ 75</h6>
   
               <div class="card_area d-flex align-items-center  ">

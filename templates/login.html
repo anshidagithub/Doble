@@ -30,12 +30,13 @@
 			<div class="row">
 				<div class="col-lg-6">
 					<div class="login_box_img">
-						<img class="img-fluid" src="{% static 'img/login.jpg' %}" alt="">
+						<img class="img-fluid" src="{% static 'img/new4.jpeg' %}" alt="">
 						<div class="hover">
-							<h4>New to our website?</h4>
-							<p>Quickly find your favorite products, saved addresses and payment methods!
-
-								Register to Join the Glam Squad and earn 2000 glam points
+							<h4>New to <b>DOBLE?</b> </h4>
+							<p>
+						 Doble cosmetics are easy to work with and are widely used by professional to individuals to achieve varied looks effortlessly.
+								
+								
 								
 								</p>
 							<a class="primary-btn" href="{% url 'signup' %}">Create an Account</a>
@@ -64,10 +65,10 @@
 						<form class="row login_form" action="{% url 'loginn' %}" method="post" id="contactForm" novalidate="novalidate">
 							 {% csrf_token %}
 							<div class="col-md-12 form-group">
-								<input type="email" class="form-control" id="email" name="email" placeholder="email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'email'">
+								<input type="email" class="form-control" id="email" name="email" placeholder="email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'email'" required>
 							</div>
 							<div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="name" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
+								<input type="text" class="form-control" id="name" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password' " required>
 							</div>
 							<div class="col-md-12 form-group">
 								<div class="creat_account">

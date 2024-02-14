@@ -1,0 +1,119 @@
+
+{% extends 'profile.html' %}
+{% load static %} 
+{% block content%}
+ <main class="col-md-9">
+        <article class="card">
+          <header class="card-header">
+            <strong class="d-inline-block mr-3 ">Your Adresses</strong>
+          </header>
+          {% if address %}
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12">
+              
+
+          {% for item in address %}
+
+          <h5 class="card-header bg-secondary text-white">Address {{forloop.counter}}</h5>
+
+          <div class="card-body form-check row">
+            <div class="row">
+              <div class="col-md-12">                      
+                <div class="d-block">
+                    <p class="card-text mb-0"><b>{{item.full_name}}</b> <br> {{item.address_line1}}<br> {{item.address_line2}}<br> {{item.state}}<br>{{item.city}}<br>{{item.country}} </p>
+                    <p class="cart-text mb-0">{{item.email}}</p>
+                    <p class="cart-text mb-0">{{item.phone}}</p>
+                </div>
+                <div class="mt-3">
+                  <a href="{% url 'editAddress' item.id %}"><button class="btn btn-warning btn-sm mr-2">Edit</button></a>
+                  <button class="btn btn-danger btn-sm ml-2" data-toggle="modal" data-target="#modal{{item.id}}">Delete</button>
+                </div>
+              </div>  
+            </div>        
+          </div>          
+          <!-- Modal -->
+          <div class="modal fade" id="modal{{item.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Delete Address?</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  Are you sure to delete <b>Address {{forloop.counter}}</b>?
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">NO</button>
+                  <a href="{% url 'deleteAddress' item.id %}"><button type="button" class="btn btn-primary">YES</button></a>
+                </div>
+              </div>
+            </div>
+          </div>
+              <hr>
+          {%endfor%}
+             
+          </div>
+                    
+          <div class="card-body form-check row">
+              <div class="col-12  py-2">
+                  <div class="row d-flex align-content-center">
+                      <div class="col-12 d-block ml-2 d-flex">
+                          <p class="card-text mt-1 h5"><b class="text-center">Add New Address</b></p>
+                          <a href="{% url 'addAddress' %}" class="col-3 btn ml-auto mr-5 text-white"  style="background-color: #7fad39;">Add</a>
+                      </div>
+                  </div>
+                  
+              </div>
+          
+          
+          
+          {%else%}
+          <div class="card-body form-check row d-flex align-items-center" style="height: 328px;">
+              <div class="col-12  py-5">
+                  <div class="row d-flex align-content-center">
+                      <div class="col-12 d-block ml-2">
+                          <p class="card-text mb-0 h4 text-center"><b>No addresses found in your account!</b></p>
+                      </div>
+                      <a href="{% url 'addAddress' %}" class="col-3 btn text-white mx-auto mt-3"  style="background-color: #7fad39;">Add Address</a>
+                  </div>
+                  
+              </div>              
+          </div>
+          
+              
+              </div>
+            </div>
+          </div>
+          {%endif%}
+   
+        </article>
+                <!-- Start pagination -->
+          <nav class="mb-3 mt-3" aria-label="page navigation sample">
+          {% if address.has_other_pages %}
+            <ul class="pagination">
+            {% if address.has_previous %}
+              <li class="page-item"><a class="page-link "href="?page={{address.previous_page_number}}">Previous</a></li>
+              {% else %}
+              <li class="page-item disabled"><a class="page-link "href="#">Previous</a></li>
+              {% endif %}
+              {% for i in address.paginator.page_range %}
+              {% if address.number == i %}
+               <li class="page-item active"><a class="page-link "href="#">{{i}}</a></li>
+               {% else %}
+               <li class="page-item"><a class="page-link "href="?page={{i}}">{{i}}</a></li>
+               {% endif %}
+               {% endfor %}
+               {% if address.has_next %}
+              <li class="page-item"><a class="page-link" href="?page={{address.next_page_number}}">Next</a></li>
+              {% else %}
+               <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+              {% endif %}
+            </ul>
+            {% endif %}
+          </nav>
+          <!-- End pagination -->    
+      </main>
+{% endblock %}

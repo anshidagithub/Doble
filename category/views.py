@@ -5,6 +5,9 @@ from django.shortcuts import render,redirect,get_object_or_404
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
 import uuid
+from userprofile.models import Address
+from userprofile.forms import AddressForm
+from django.contrib import messages
 # Create your views here.
 
 def _cart_id(request, user=None):
@@ -117,7 +120,8 @@ def cartpage(request,total=0, quantity=0, cart_items=None):
 def checkout(request, total=0, quantity=0, cart_items=None):
     tax = None
     grand_total = None
-    
+    address = Address.objects.filter(user = request.user)
+    form = AddressForm()
     
 
     try:
@@ -142,7 +146,40 @@ def checkout(request, total=0, quantity=0, cart_items=None):
         'cart_items': cart_items,
         'tax': tax,
         'grand_total': grand_total,
+        'address':address,
+        'form':form,
        
     }
 
     return render(request, 'checkout.html', context)
+
+
+def deleteCheckoutAddress(request,id):
+    address=Address.objects.get(id = id)
+    messages.success(request,"Address Deleted")
+    address.delete()
+    return redirect('checkout')
+
+
+def AddCheckoutAddress(request):
+    if request.method == 'POST':
+        form = AddressForm(request.POST)
+        if form.is_valid():
+            print('form is valid')
+            detail = Address()
+            detail.user = request.user
+            detail.first_name =form.cleaned_data['first_name']
+            detail.last_name = form.cleaned_data['last_name']
+            detail.phone =  form.cleaned_data['phone']
+            detail.email =  form.cleaned_data['email']
+            detail.address_line1 =  form.cleaned_data['address_line1']
+            detail.address_line2  = form.cleaned_data['address_line2']
+            detail.state =  form.cleaned_data['state']
+            detail.city =  form.cleaned_data['city']
+            detail.save()
+            messages.success(request,'Address added Successfully')
+            return redirect('checkout')
+        else:
+            messages.error(request,'Form is Not valid')
+            return redirect('checkout')
+  

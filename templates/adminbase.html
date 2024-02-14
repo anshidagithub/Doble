@@ -138,26 +138,9 @@
               <span class="menu-title">Products</span>
             </a>
           </li>
+         
           <li class="nav-item menu-items">
-            <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
-              <span class="menu-icon">
-                <i class="mdi mdi-speedometer"></i>
-              </span>
-              <span class="menu-title">Variation</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="auth">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{% static 'pages/samples/blank-page.html' %}"> Blank Page </a></li>
-                <li class="nav-item"> <a class="nav-link" href="{% static 'pages/samples/error-404.html' %}"> 404 </a></li>
-                <li class="nav-item"> <a class="nav-link" href="{% static 'pages/samples/error-500.html' %}"> 500 </a></li>
-                <li class="nav-item"> <a class="nav-link" href="{% static 'pages/samples/login.htm' %}l"> Login </a></li>
-                <li class="nav-item"> <a class="nav-link" href="{% static 'pages/samples/register.html' %}"> Register </a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item menu-items">
-            <a class="nav-link" href="{% static 'http://www.bootstrapdash.com/demo/corona-free/jquery/documentation/documentation.html' %}">
+            <a class="nav-link" href="{% url 'adminpanel:orderslist' %}">
               <span class="menu-icon">
                 <i class="mdi mdi-speedometer"></i>
               </span>
@@ -183,7 +166,7 @@
             </button>
             <ul class="navbar-nav w-100">
               <li class="nav-item w-100">
-                <form  id="form" class="nav-link mt-2 mt-md-0 d-none d-lg-flex search" action="" method="GET">
+                <form  id="form" class="nav-link mt-2 mt-md-0 d-none d-lg-flex search" action="{% url 'adminpanel:adminsearch' %}" method="GET">
                   <input
                     type="text"
                     class="form-control"

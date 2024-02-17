@@ -32,7 +32,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'default_secret_key')
 DEBUG = os.getenv('DEBUG', 'True') 
 
 
-ALLOWED_HOSTS = ['54.238.100.59','0.0.0.0']
+ALLOWED_HOSTS = ['54.238.100.59 ','0.0.0.0']
 
 
 # Application definition
@@ -164,5 +164,5 @@ CORS_ALLOWED_ORIGINS = [
 
 CORS_ALLOW_CREDENTIALS = True
 
-# CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_ALLOW_ALL = True
 

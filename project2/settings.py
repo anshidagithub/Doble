@@ -156,5 +156,13 @@ MESSAGE_TAGS = {
     messages.SUCCESS: 'success',
 }
 
-CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOWED_ORIGINS = [
+    "http://54.238.100.59",
+    "http://0.0.0.0:9090",  # Assuming your frontend runs on this address
+    # Add other allowed origins as needed
+]
+
+CORS_ALLOW_CREDENTIALS = True
+
+# CORS_ORIGIN_ALLOW_ALL = True
 

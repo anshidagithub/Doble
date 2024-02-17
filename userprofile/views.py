@@ -206,18 +206,14 @@ def cancel_order(request, order_number):
     
     
 def return_order(request,order_number):
-  print("loooooo")
   if request.method == 'POST':
-    print('helloooooooooooooooo')
-    return_reason = request.POST['return_reason']
-  print(return_reason)
+   return_reason = request.POST['return_reason']
   order = Order.objects.get(order_number = order_number,user = request.user)
   order.status = "Returned"
   order.is_returned = True
   order.return_reason = return_reason
   order.save()
   payment = Payment.objects.get(order_id = order.order_number)
-  print("order get")
   
 
   order_products = OrderProduct.objects.filter(user=request.user,order=order)
@@ -231,7 +227,6 @@ def return_order(request,order_number):
 
   profile = UserProfile.objects.get(user=request.user) 
   if payment.status == 'True':
-       print('hlo')
        print(payment.amount_paid)
        profile.wallet += payment.amount_paid
        print(profile.wallet)

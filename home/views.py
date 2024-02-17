@@ -32,7 +32,7 @@ def categoryy(request,sub_category_slug=None):
         
         
     else:
-        print('koi')
+        
         categories = category.objects.all()
         sub = subcategory.objects.all()
         products = product.objects.all()

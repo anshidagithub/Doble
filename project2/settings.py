@@ -29,7 +29,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'default_secret_key')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG', 'True') == 'True'
+DEBUG = os.getenv('DEBUG', 'True') 
 
 
 ALLOWED_HOSTS = []
@@ -50,9 +50,11 @@ INSTALLED_APPS = [
     'category',
     'orders',
     'userprofile',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -154,5 +156,5 @@ MESSAGE_TAGS = {
     messages.SUCCESS: 'success',
 }
 
-
+CORS_ORIGIN_ALLOW_ALL = True
 
